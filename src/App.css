@@ -9,9 +9,3 @@
 .app__body{
     display: flex;
 }
-
-.feed{
-    background-color: rgb(246, 221, 221);
-    width: 600px;
-    height: 100vw;
-}
