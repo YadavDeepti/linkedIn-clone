@@ -14,17 +14,19 @@ const Login = () => {
     const [profilePicture, setProfilePicture] = useState("");
     const dispatch = useDispatch();
     const auth = getAuth();
-    //const user = auth.currentUser;
+    
 
 
-    const register = () => {
+    const register = (e) => {
+        e.preventDefault();
         if (!name) {
             return alert("Please enter your full name.")
         }
 
        createUserWithEmailAndPassword( auth, email, password)
             .then((userAuth) => {
-                updateProfile(auth.currentUser, {
+                const user = userAuth.user;
+                updateProfile(user, {
                     displayName: name,
                     PhotoURL: profilePicture
                 })
@@ -37,6 +39,10 @@ const Login = () => {
                     }))
                 })
             }).catch(error => alert(error));
+            setName("")
+            setEmail("")
+            setPassword("")
+            setProfilePicture("")
     };
 
     const loginToApp = (e) => {
